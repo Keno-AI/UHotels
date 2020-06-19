@@ -16,8 +16,12 @@ var hotelsRoutes = require('./routes/hotels'),
     indexRoutes=require('./routes/index')
   
 
+//Set up mongoose connection
+var mongoDB = 'mongodb+srv://Keno:Qwerty12345@cluster0-c9hci.mongodb.net/<dbname>?retryWrites=true&w=majority';
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-mongoose.connect('mongodb://127.0.0.1:27017/hotels',{ useUnifiedTopology: true,useNewUrlParser: true });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
