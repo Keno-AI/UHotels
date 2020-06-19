@@ -1,0 +1,29 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+    <header class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1>Explore Hotels </h1>
+            <a class="btn btn-outline-primary" href="/hotels/new" role="button">Create New Hotel</a>
+            
+        </div>
+    </header>
+
+    <div class="row text-center" >
+        <% hotels.forEach(function(hotel){ %>
+            <div class="col-md-3 col-sm-6">
+                <figure class="figure">
+                    <img src="<%=hotel.image%>" class="img-thumbnail">
+                    <figcaption class="figure-caption"><h4><%=hotel.name%></h4></figcaption>
+                    <a class="btn btn-outline-primary" href="/hotels/<%= hotel._id %>" role="button">Explore Hotel</a>
+                  </figure>
+            </div>
+        <% }) %>
+    </div>
+
+</div>
+
+
+<%- include("../partials/footer") %>
+
+

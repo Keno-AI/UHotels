@@ -1,0 +1,66 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">UHotels</p>
+            <div class="list-group">
+                <li class="list-group-item">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <img src="<%=hotel.image%>" class="img-thumbnail" >
+            <div class="caption-full">
+                <h4 class="float-right">$9.00/night</h4>
+                <h4><a><%= hotel.name %></a></h4>
+                <p><%=hotel.description%></p>
+            </div>
+            <p >
+                <em>Submitted by <%=hotel.author.username%></em>
+            </p>
+            <% if(currentUser && hotel.author.id.equals(currentUser._id)){ %>
+            <a class="btn btn-lg btn-outline-primary" href="/hotels/<%= hotel._id %>/edit" role="button">Edit</a>
+            <form style= "display:inline" action="/hotels/<%= hotel._id %>?_method=DELETE" method="POST">
+                <button  class="btn btn-lg btn-danger">Delete</button>
+            </form>
+            <%}%>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-outline-primary" href="/hotels/<%= hotel._id %>/comments/new" role="button">Add Comment</a>
+                </div>
+                <hr>
+                <% hotel.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4><%= comment.author.username %></h4> 
+                            <span class="float-right">10 days ago</span>
+                            <p>
+                                <p><%= comment.text %></p>
+                            </p>
+                            <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                            <a class="btn btn-xs btn-outline-primary" href="/hotels/<%= hotel._id %>/comments/<%= comment._id %>/edit"
+                             role="button">Edit</a>
+                             <form style= "display:inline" action="/hotels/<%= hotel._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                <button  class="btn btn-xs btn-danger">Delete</button>
+                            </form>
+                            <%}%>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+            
+                <!-- <div class="container" style=" border-color: #008a77;border-style: solid;"> -->
+                   
+             
+        </div>
+    </div>
+
+        
+
+</div>
+
+
+
+<%- include("../partials/footer") %>
