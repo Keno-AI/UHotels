@@ -9,7 +9,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override');
 const User = require('./models/user')
-const PORT = process.env.PORT || 5000;
+const PORT = '0.0.0.0' || 5000;
 
 var hotelsRoutes = require('./routes/hotels'),
     commentsRoutes =require('./routes/comments'),
