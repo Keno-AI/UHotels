@@ -9,6 +9,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override');
 const User = require('./models/user')
+const PORT = process.env.PORT || 5000;
 
 var hotelsRoutes = require('./routes/hotels'),
     commentsRoutes =require('./routes/comments'),
@@ -53,6 +54,6 @@ app.use(indexRoutes);
 app.use('/hotels/:id/comments',commentsRoutes);
 
 
-app.listen(process.env.PORT || 5000, function(){
-    console.log(`Example app listening at http://localhost:5000`);
+app.listen(PORT, function(){
+    console.log(`Listening on ${ PORT }`)
 });
