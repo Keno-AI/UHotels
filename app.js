@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const port = 5000;
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const Hotel = require('./models/hotel');
@@ -54,10 +53,6 @@ app.use(indexRoutes);
 app.use('/hotels/:id/comments',commentsRoutes);
 
 
-
-
-
-
-app.listen(port, function(){
-    console.log(`Example app listening at http://localhost:${port}`);
+app.listen(process.env.PORT || 5000, function(){
+    console.log(`Example app listening at http://localhost:5000`);
 });
